@@ -1,0 +1,23 @@
+name: actions test
+
+on: 
+  pull_request:
+  push:
+    branches:
+      - master
+      - develop
+    
+jobs:
+  test:
+    name: running unit tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: install    
+        run: npm ci
+      - name: testing
+        run: npm test
